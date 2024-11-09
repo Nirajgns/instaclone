@@ -2,8 +2,26 @@ import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { MoreHorizontal } from "lucide-react";
+import { Button } from "./ui/button";
+import { useState } from "react";
 
 const CommentDialog = ({ dialogOpen, setDialogOpen }) => {
+  const [text, setText] = useState("");
+
+  const changeEventHandler = (e) => {
+    const inputText = e.target.value;
+
+    if (inputText.trim()) {
+      setText(inputText);
+    } else {
+      setText("");
+    }
+  };
+
+  const postCommentHandler = async () => {
+    alert(text);
+  };
+
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogContent className="p-0 flex flex-col">
@@ -45,6 +63,28 @@ const CommentDialog = ({ dialogOpen, setDialogOpen }) => {
             <hr />
             <div className="overflow-y-auto flex-1 max-h-96 p-4">
               Comments here
+            </div>
+            <div className="p-4">
+              <div className="flex items-center gap-2">
+                <input
+                  className="w-full outline-none border border-gray-300 p-2 rounded"
+                  type="text"
+                  name="comment"
+                  placeholder="Add a comment..."
+                  onChange={changeEventHandler}
+                  value={text}
+                />
+                <Button
+                  disabled={!text.trim()}
+                  onClick={() => {
+                    postCommentHandler;
+                  }}
+                  variant="ghost"
+                  className="text-blue-600"
+                >
+                  Post
+                </Button>
+              </div>
             </div>
           </div>
         </div>

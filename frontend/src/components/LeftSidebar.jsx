@@ -11,34 +11,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { toast } from "sonner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const sidebarItems = [
-  { icon: <Home />, text: "Home" },
-  { icon: <Search />, text: "Search" },
-
-  { icon: <TrendingUp />, text: "Explore" },
-
-  { icon: <MessageCircle />, text: "Messages" },
-
-  { icon: <Heart />, text: "Notifications" },
-
-  { icon: <PlusSquare />, text: "Create" },
-
-  {
-    icon: (
-      <Avatar className="w-6 h-6">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
-    ),
-    text: "Profile",
-  },
-
-  { icon: <LogOut />, text: "Logout" },
-];
+import { useSelector } from "react-redux";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
+  const user = useSelector((store) => store.auth); //destructures user from store.auth.user
 
   const logoutHandler = async () => {
     try {
@@ -59,6 +36,31 @@ const LeftSidebar = () => {
       logoutHandler();
     }
   };
+
+  const sidebarItems = [
+    { icon: <Home />, text: "Home" },
+    { icon: <Search />, text: "Search" },
+
+    { icon: <TrendingUp />, text: "Explore" },
+
+    { icon: <MessageCircle />, text: "Messages" },
+
+    { icon: <Heart />, text: "Notifications" },
+
+    { icon: <PlusSquare />, text: "Create" },
+
+    {
+      icon: (
+        <Avatar className="w-6 h-6">
+          <AvatarImage src={user?.profilePicture} alt="NG" />
+          <AvatarFallback>NG</AvatarFallback>
+        </Avatar>
+      ),
+      text: "Profile",
+    },
+
+    { icon: <LogOut />, text: "Logout" },
+  ];
 
   return (
     <div className="fixed top-0 z-10 px-4 border-r border-gray-300 w-[16%] h-screen">
