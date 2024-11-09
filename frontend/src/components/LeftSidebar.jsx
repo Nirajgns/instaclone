@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
-  const user = useSelector((store) => store.auth); //destructures user from store.auth.user
+  const { user } = useSelector((store) => store.auth); //destructures user from store.auth.user
 
   const logoutHandler = async () => {
     try {
