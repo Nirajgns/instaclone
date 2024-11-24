@@ -34,7 +34,7 @@ const Login = () => {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        },
+        }
       );
       if (res.data.success) {
         dispatch(setAuthUser(res.data.user));
@@ -57,13 +57,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center w-screen h-screen justify-center">
+    <div className="flex h-screen w-screen items-center justify-center">
       <form
         onSubmit={handleSignup}
-        className="shadow-lg flex flex-col gap-5 p-8 "
-      >
+        className="flex flex-col gap-5 p-8 shadow-lg ">
         <div className="my-4">
-          <h1 className="text-center font-bold text-xl">LOGO</h1>
+          <h1 className="text-center text-xl font-bold">LOGO</h1>
 
           <p className="text-center text-sm">
             Login and connect with the world...

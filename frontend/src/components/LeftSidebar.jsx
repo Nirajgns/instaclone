@@ -11,18 +11,26 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { toast } from "sonner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthUser } from "@/redux/authSlice";
+import { useState } from "react";
+import CreatePostDialog from "./CreatePostDialog";
 
 const LeftSidebar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth); //destructures user from store.auth.user
 
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
   const logoutHandler = async () => {
+    console.log("hello");
     try {
       const res = await axios.get("http://localhost:5000/api/v1/user/logout", {
         withCredentials: true,
       });
       if (res.data.success) {
+        dispatch(setAuthUser(null));
         navigate("/login");
         toast.success(res.data.message);
       }
@@ -34,6 +42,9 @@ const LeftSidebar = () => {
   const sidebarHandler = (textType) => {
     if (textType === "Logout") {
       logoutHandler();
+    }
+    if (textType === "Create") {
+      setOpen(true);
     }
   };
 
@@ -51,7 +62,7 @@ const LeftSidebar = () => {
 
     {
       icon: (
-        <Avatar className="w-6 h-6">
+        <Avatar className="h-6 w-6">
           <AvatarImage src={user?.profilePicture} alt="NG" />
           <AvatarFallback>NG</AvatarFallback>
         </Avatar>
@@ -63,7 +74,7 @@ const LeftSidebar = () => {
   ];
 
   return (
-    <div className="fixed top-0 z-10 px-4 border-r border-gray-300 w-[16%] h-screen">
+    <div className="fixed top-0 z-10 h-screen w-[16%] border-r border-gray-300 px-4">
       <div className="flex flex-col">
         <h1 className="text-center text-xl">LOGO</h1>
         <div className="">
@@ -72,7 +83,7 @@ const LeftSidebar = () => {
               <div
                 key={index}
                 onClick={() => sidebarHandler(item.text)}
-                className="flex items-center gap-3 relative hover:bg-gray-100 cursor-pointer rounded-lg p-3 my-3"
+                className="relative my-3 flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-gray-100"
               >
                 {item.icon}
                 <span>{item.text}</span>
@@ -81,6 +92,7 @@ const LeftSidebar = () => {
           })}
         </div>
       </div>
+      <CreatePostDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
