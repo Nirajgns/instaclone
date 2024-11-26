@@ -19,12 +19,14 @@ const CreatePostDialog = ({ open, setOpen }) => {
     const file = e.target.files?.[0];
     if (file) {
       setFile(file);
-      const deataUrl = await readFileAsDataURL(file);
-      setImagePreview(deataUrl);
+      const dataUrl = await readFileAsDataURL(file);
+      setImagePreview(dataUrl);
     }
   };
 
   const createPostHandler = async (e) => {
+    const a = "hello";
+    console.log(a);
     e.preventDefault();
 
     const formData = new FormData();
@@ -50,7 +52,6 @@ const CreatePostDialog = ({ open, setOpen }) => {
         setOpen(false);
       }
     } catch (error) {
-
       toast.error(error.response.data.message);
     } finally {
       setIsUploading(false);
