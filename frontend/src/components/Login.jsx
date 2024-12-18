@@ -34,7 +34,7 @@ const Login = () => {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
+        },
       );
       if (res.data.success) {
         dispatch(setAuthUser(res.data.user));
@@ -60,7 +60,8 @@ const Login = () => {
     <div className="flex h-screen w-screen items-center justify-center">
       <form
         onSubmit={handleSignup}
-        className="flex flex-col gap-5 p-8 shadow-lg ">
+        className="flex flex-col gap-5 p-8 shadow-lg "
+      >
         <div className="my-4">
           <h1 className="text-center text-xl font-bold">LOGO</h1>
 

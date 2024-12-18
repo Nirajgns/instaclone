@@ -4,9 +4,6 @@ import RightSideBar from "./RightSideBar";
 import useGetAllPost from "@/hooks/getAllpost";
 
 const Home = () => {
-  const a = "hello";
-  console.log("a:", a);
-
   useGetAllPost();
   return (
     <div className="flex">
