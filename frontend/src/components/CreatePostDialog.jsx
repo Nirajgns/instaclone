@@ -48,7 +48,7 @@ const CreatePostDialog = ({ open, setOpen }) => {
         {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,
-        }
+        },
       );
       if (res.data.success) {
         dispatch(setPosts([res.data.post, ...posts]));
@@ -105,7 +105,8 @@ const CreatePostDialog = ({ open, setOpen }) => {
         />
         <Button
           onClick={() => imageRef.current.click()}
-          className="w-fit mx-auto bg-[#0095f6] hover:bg-[#358bcf">
+          className="w-fit mx-auto bg-[#0095f6] hover:bg-[#358bcf"
+        >
           Select photo from computer...
         </Button>
         {imagePreview &&

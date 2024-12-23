@@ -24,7 +24,6 @@ const LeftSidebar = () => {
   const [open, setOpen] = useState(false);
 
   const logoutHandler = async () => {
-    console.log("hello");
     try {
       const res = await axios.get("http://localhost:5000/api/v1/user/logout", {
         withCredentials: true,
@@ -39,11 +38,12 @@ const LeftSidebar = () => {
     }
   };
 
-  const sidebarHandler = (textType) => {
-    if (textType === "Logout") {
+  const sidebarHandler = (text) => {
+    if (text === "Logout") {
       logoutHandler();
     }
-    if (textType === "Create") {
+
+    if (text === "Create") {
       setOpen(true);
     }
   };

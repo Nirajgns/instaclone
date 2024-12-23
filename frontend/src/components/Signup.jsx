@@ -69,9 +69,9 @@ const Signup = () => {
         <div>
           <Label>Username</Label>
           <Input
+            value={input.username}
             type="text"
             name="username"
-            value={input.username}
             onChange={changeEventHandler}
             className="focus-visible:ring-transparent"
           />
@@ -80,9 +80,9 @@ const Signup = () => {
         <div>
           <Label>Email</Label>
           <Input
+            value={input.email}
             type="email"
             name="email"
-            value={input.email}
             onChange={changeEventHandler}
             className="focus-visible:ring-transparent"
           />
@@ -91,9 +91,9 @@ const Signup = () => {
         <div>
           <Label>Password</Label>
           <Input
+            value={input.password}
             type="Password"
             name="password"
-            value={input.password}
             onChange={changeEventHandler}
             className="focus-visible:ring-transparent"
           />
