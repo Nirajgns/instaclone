@@ -41,10 +41,10 @@ const LeftSidebar = () => {
   const sidebarHandler = (text) => {
     if (text === "Logout") {
       logoutHandler();
-    }
-
-    if (text === "Create") {
+    } else if (text === "Create") {
       setOpen(true);
+    } else if (text === "Profile") {
+      navigate(`/profile/${user?._id}`);
     }
   };
 

@@ -1,5 +1,13 @@
+import { Avatar, AvatarImage } from "./ui/avatar";
+
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <div>
+      <Avatar>
+        <AvatarImage />
+      </Avatar>
+    </div>
+  );
 };
 
 export default Profile;
