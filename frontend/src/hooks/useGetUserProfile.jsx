@@ -1,28 +1,28 @@
-import { setSelectedUser } from "@/redux/authSlice";
+import { setUserProfile } from "@/redux/authSlice";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const useGetSuggestedUsers = () => {
+const useGetUserProfile = (userId) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    const fetchSuggestedUsers = async () => {
+    const fetchUserProfile = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/v1/user/suggested",
-          {
-            withCredentials: true,
-          },
+          `http://localhost:5000/api/v1/user/${userId}/profile`,
+          { withCredentials: true },
         );
+
         if (res.data.success) {
-          dispatch(setSelectedUser(res.data.users));
+          dispatch(setUserProfile(res.data.user));
         }
       } catch (error) {
         console.log(error);
       }
     };
-    fetchSuggestedUsers();
-  }, []);
+    fetchUserProfile();
+  }, [userId]);
 };
 
-export default useGetSuggestedUsers;
+export default useGetUserProfile;

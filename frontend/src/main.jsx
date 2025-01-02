@@ -12,6 +12,7 @@ let persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    {console.log("hello")}
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <App />
